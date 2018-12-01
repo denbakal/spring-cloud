@@ -1,4 +1,4 @@
-package ua.demo.order.entity;
+package ua.demo.cloud.order.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
