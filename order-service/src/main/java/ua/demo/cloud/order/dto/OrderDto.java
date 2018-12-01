@@ -1,4 +1,4 @@
-package ua.demo.order.dto;
+package ua.demo.cloud.order.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,8 +1,8 @@
-package ua.demo.order.mapper;
+package ua.demo.cloud.order.mapper;
 
 import org.mapstruct.Mapper;
-import ua.demo.order.dto.UserDto;
-import ua.demo.order.entity.User;
+import ua.demo.cloud.order.dto.UserDto;
+import ua.demo.cloud.order.entity.User;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {

@@ -1,11 +1,10 @@
-package ua.demo.order.controllers;
+package ua.demo.cloud.order.controllers;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ua.demo.order.dto.OrderDto;
-import ua.demo.order.services.OrderService;
+import ua.demo.cloud.order.services.OrderService;
+import ua.demo.cloud.order.dto.OrderDto;
 
 import javax.validation.Valid;
 

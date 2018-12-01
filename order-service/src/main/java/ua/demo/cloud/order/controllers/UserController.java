@@ -1,12 +1,12 @@
-package ua.demo.order.controllers;
+package ua.demo.cloud.order.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.demo.order.dto.UserDto;
-import ua.demo.order.services.UserService;
+import ua.demo.cloud.order.dto.UserDto;
+import ua.demo.cloud.order.services.UserService;
 
 import javax.validation.Valid;
 

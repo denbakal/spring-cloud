@@ -1,11 +1,11 @@
-package ua.demo.order.services.impl;
+package ua.demo.cloud.order.services.impl;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.demo.order.dto.OrderDto;
-import ua.demo.order.repositories.UserRepository;
-import ua.demo.order.services.OrderService;
+import ua.demo.cloud.order.services.OrderService;
+import ua.demo.cloud.order.dto.OrderDto;
+import ua.demo.cloud.order.repositories.UserRepository;
 
 @Service
 @Log4j2
