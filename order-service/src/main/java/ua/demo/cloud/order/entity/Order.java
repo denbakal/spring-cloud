@@ -19,7 +19,7 @@ public class Order {
     @Id
     private String id;
     private OrderState state;
-    private Service service;
+    private Product product;
     private User user;
     private LocalDate creationDate;
     private boolean isPassedPayment;

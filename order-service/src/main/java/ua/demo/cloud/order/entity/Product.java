@@ -6,17 +6,17 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import ua.demo.cloud.order.common.ServiceType;
+import ua.demo.cloud.order.common.ProductType;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 @Document
-public class Service {
+public class Product {
     @Id
     private String id;
-    private ServiceType serviceType;
+    private ProductType productType;
     private Provider provider;
     private String name;
 }
