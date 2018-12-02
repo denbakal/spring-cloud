@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import ua.demo.cloud.order.common.OrderState;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -21,6 +22,6 @@ public class Order {
     private OrderState state;
     private Product product;
     private User user;
-    private LocalDate creationDate;
+    private LocalDateTime creationDate;
     private boolean isPassedPayment;
 }

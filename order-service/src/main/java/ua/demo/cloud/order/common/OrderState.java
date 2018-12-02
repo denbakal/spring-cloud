@@ -1,5 +1,5 @@
 package ua.demo.cloud.order.common;
 
 public enum OrderState {
-    NONE, IN_PROGRESS, DONE, PASSED_PAYMENT;
+    NONE, IN_PROGRESS, PASSED_PAYMENT;
 }

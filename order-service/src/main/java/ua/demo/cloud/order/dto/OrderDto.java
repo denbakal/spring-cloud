@@ -14,11 +14,9 @@ import javax.validation.constraints.Positive;
 @ToString
 public class OrderDto {
     @NotNull
-    private long userId;
-
+    private UserDto userDto;
     @NotNull
-    private long serviceId;
-
+    private ProductDto productDto;
     @NotNull
     @Positive
     private int amount;
