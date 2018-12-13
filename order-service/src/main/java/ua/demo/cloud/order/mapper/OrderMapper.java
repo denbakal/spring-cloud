@@ -10,6 +10,7 @@ import ua.demo.cloud.order.entity.Order;
 public interface OrderMapper {
 
     @Mappings({
+//            @Mapping(target = "id", source = "id"),
             @Mapping(target = "userDto", source = "user"),
             @Mapping(target = "productDto", source = "product")
     })

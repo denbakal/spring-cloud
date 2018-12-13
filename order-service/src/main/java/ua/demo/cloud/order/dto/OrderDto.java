@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import ua.demo.cloud.order.common.OrderState;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -13,6 +14,7 @@ import javax.validation.constraints.Positive;
 @NoArgsConstructor
 @ToString
 public class OrderDto {
+    private String id;
     @NotNull
     private UserDto userDto;
     @NotNull
@@ -20,4 +22,5 @@ public class OrderDto {
     @NotNull
     @Positive
     private int amount;
+    private OrderState state;
 }

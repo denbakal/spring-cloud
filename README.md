@@ -10,4 +10,6 @@
     "productDto": {"productType": "MOBILE_OPERATORS", "name": "UMC refill", "provider": {"name": "UMC", "code": 1234}},
     "amount": 100
 }
+5) POST /payments
+{"orderId": "123", "userId": "123", "amount": 1200, "state": "PROCESSING"}
 
