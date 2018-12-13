@@ -10,6 +10,7 @@ import ua.demo.cloud.order.common.PaymentState;
 import ua.demo.cloud.order.dto.PaymentDto;
 import ua.demo.cloud.order.entity.Order;
 import ua.demo.cloud.order.entity.User;
+import ua.demo.cloud.order.feign.PaymentClient;
 import ua.demo.cloud.order.mapper.OrderMapper;
 import ua.demo.cloud.order.repositories.OrderRepository;
 import ua.demo.cloud.order.services.OrderService;
@@ -31,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
 
     @Autowired
-    private RestTemplate restTemplate;
+    private PaymentClient paymentClient;
 
     @Override
     public OrderDto handle(OrderDto orderDto) {
@@ -51,10 +52,7 @@ public class OrderServiceImpl implements OrderService {
         paymentRequest.setOrderId(order.getId());
         paymentRequest.setState(PaymentState.PENDING);
 
-        ResponseEntity<PaymentDto> paymentResponse =
-                this.restTemplate.postForEntity("http://localhost:8082/s2/payments", paymentRequest, PaymentDto.class);
-
-        PaymentDto payment = paymentResponse.getBody();
+        PaymentDto payment = this.paymentClient.createPayment(paymentRequest);
 
         if (payment != null && payment.getState() == PaymentState.COMPLETED) {
             order.setPassedPayment(true);
