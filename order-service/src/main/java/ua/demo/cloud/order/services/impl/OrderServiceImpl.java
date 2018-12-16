@@ -12,6 +12,7 @@ import ua.demo.cloud.order.entity.Order;
 import ua.demo.cloud.order.entity.User;
 import ua.demo.cloud.order.feign.PaymentClient;
 import ua.demo.cloud.order.mapper.OrderMapper;
+import ua.demo.cloud.order.proto.model.PaymentRequestInfo;
 import ua.demo.cloud.order.repositories.OrderRepository;
 import ua.demo.cloud.order.services.OrderService;
 import ua.demo.cloud.order.dto.OrderDto;
@@ -46,15 +47,17 @@ public class OrderServiceImpl implements OrderService {
 
         User currentUser = this.userRepository.findByEmail(order.getUser().getEmail());
 
-        PaymentDto paymentRequest = new PaymentDto();
-        paymentRequest.setAmount(orderDto.getAmount());
-        paymentRequest.setUserId(currentUser.getId());
-        paymentRequest.setOrderId(order.getId());
-        paymentRequest.setState(PaymentState.PENDING);
+        PaymentRequestInfo.PaymentRequest paymentRequest = PaymentRequestInfo.PaymentRequest
+                .newBuilder()
+                .setAmount(orderDto.getAmount())
+                .setUserId(currentUser.getId())
+                .setOrderId(order.getId())
+                .setState(PaymentState.PENDING.name())
+                .build();
 
-        PaymentDto payment = this.paymentClient.createPayment(paymentRequest);
+        PaymentRequestInfo.PaymentRequest payment = this.paymentClient.createPayment(paymentRequest);
 
-        if (payment != null && payment.getState() == PaymentState.COMPLETED) {
+        if (payment != null && PaymentState.valueOf(payment.getState()) == PaymentState.COMPLETED) {
             order.setPassedPayment(true);
             order.setState(OrderState.COMPLETED);
         }

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package proto;
+
+option java_package = "ua.demo.cloud.order.proto.model";
+option java_outer_classname = "PaymentRequestInfo";
+
+message PaymentRequest {
+    string orderId = 1;
+    string userId = 2;
+    int32 amount = 3;
+    string state = 4;
+}
