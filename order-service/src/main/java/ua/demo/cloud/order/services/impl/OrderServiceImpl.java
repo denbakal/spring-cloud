@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import ua.demo.cloud.order.common.OrderState;
 import ua.demo.cloud.order.common.PaymentState;
 import ua.demo.cloud.order.dto.PaymentDto;
+import ua.demo.cloud.order.dto.ReportDto;
 import ua.demo.cloud.order.entity.Order;
 import ua.demo.cloud.order.entity.User;
 import ua.demo.cloud.order.mapper.OrderMapper;
@@ -59,6 +60,12 @@ public class OrderServiceImpl implements OrderService {
         if (payment != null && payment.getState() == PaymentState.COMPLETED) {
             order.setPassedPayment(true);
             order.setState(OrderState.COMPLETED);
+
+            ReportDto reportRequest = new ReportDto();
+            reportRequest.setOrderId(order.getId());
+            reportRequest.setCompletedTime(LocalDateTime.now());
+
+            this.restTemplate.postForEntity("http://report-service/reports", reportRequest, Void.class);
         }
 
         return this.orderMapper.fromOrder(this.orderRepository.save(order));

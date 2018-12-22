@@ -1,12 +1,11 @@
-package ua.demo.cloud.order;
+package ua.demo.cloud.report;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 @SpringBootApplication
-public class OrderServiceApplication {
+public class ReportServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(OrderServiceApplication.class, args);
+        SpringApplication.run(ReportServiceApplication.class, args);
     }
 }
