@@ -52,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
         paymentRequest.setState(PaymentState.PENDING);
 
         ResponseEntity<PaymentDto> paymentResponse =
-                this.restTemplate.postForEntity("http://localhost:8082/s2/payments", paymentRequest, PaymentDto.class);
+                this.restTemplate.postForEntity("http://payment-service/s2/payments", paymentRequest, PaymentDto.class);
 
         PaymentDto payment = paymentResponse.getBody();
 
