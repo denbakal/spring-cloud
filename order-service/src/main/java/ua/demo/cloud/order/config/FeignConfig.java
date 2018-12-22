@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.support.SpringMvcContract;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ua.demo.cloud.order.feign.PaymentClient;
+import ua.demo.cloud.order.client.PaymentClient;
 
 @Configuration
 public class FeignConfig {

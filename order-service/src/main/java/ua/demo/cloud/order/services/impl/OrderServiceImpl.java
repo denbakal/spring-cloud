@@ -2,15 +2,13 @@ package ua.demo.cloud.order.services.impl;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import ua.demo.cloud.order.common.OrderState;
 import ua.demo.cloud.order.common.PaymentState;
 import ua.demo.cloud.order.dto.PaymentDto;
 import ua.demo.cloud.order.entity.Order;
 import ua.demo.cloud.order.entity.User;
-import ua.demo.cloud.order.feign.PaymentClient;
+import ua.demo.cloud.order.client.PaymentClient;
 import ua.demo.cloud.order.mapper.OrderMapper;
 import ua.demo.cloud.order.repositories.OrderRepository;
 import ua.demo.cloud.order.services.OrderService;
