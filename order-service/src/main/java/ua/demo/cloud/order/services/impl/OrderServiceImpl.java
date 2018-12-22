@@ -2,15 +2,15 @@ package ua.demo.cloud.order.services.impl;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import ua.demo.cloud.order.client.ReportClient;
 import ua.demo.cloud.order.common.OrderState;
 import ua.demo.cloud.order.common.PaymentState;
 import ua.demo.cloud.order.dto.PaymentDto;
 import ua.demo.cloud.order.dto.ReportDto;
 import ua.demo.cloud.order.entity.Order;
 import ua.demo.cloud.order.entity.User;
+import ua.demo.cloud.order.client.PaymentClient;
 import ua.demo.cloud.order.mapper.OrderMapper;
 import ua.demo.cloud.order.repositories.OrderRepository;
 import ua.demo.cloud.order.services.OrderService;
@@ -32,7 +32,10 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
 
     @Autowired
-    private RestTemplate restTemplate;
+    private PaymentClient paymentClient;
+
+    @Autowired
+    private ReportClient reportClient;
 
     @Override
     public OrderDto handle(OrderDto orderDto) {
@@ -52,10 +55,7 @@ public class OrderServiceImpl implements OrderService {
         paymentRequest.setOrderId(order.getId());
         paymentRequest.setState(PaymentState.PENDING);
 
-        ResponseEntity<PaymentDto> paymentResponse =
-                this.restTemplate.postForEntity("http://payment-service/s2/payments", paymentRequest, PaymentDto.class);
-
-        PaymentDto payment = paymentResponse.getBody();
+        PaymentDto payment = this.paymentClient.createPayment(paymentRequest);
 
         if (payment != null && payment.getState() == PaymentState.COMPLETED) {
             order.setPassedPayment(true);
@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
             reportRequest.setOrderId(order.getId());
             reportRequest.setCompletedTime(LocalDateTime.now());
 
-            this.restTemplate.postForEntity("http://report-service/reports", reportRequest, Void.class);
+            this.reportClient.sendReport(reportRequest);
         }
 
         return this.orderMapper.fromOrder(this.orderRepository.save(order));
