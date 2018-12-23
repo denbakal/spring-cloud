@@ -16,6 +16,7 @@ public class RibbonConfiguration {
     public IRule rule() {
         // each server is given a weight according to its average response time,
         // lesser the response time gives lesser the weight.
-        return new WeightedResponseTimeRule();
+//        return new WeightedResponseTimeRule();
+        return new ZoneAvoidanceRule();
     }
 }
