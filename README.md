@@ -13,3 +13,7 @@
 5) POST /payments
 {"orderId": "123", "userId": "123", "amount": 1200, "state": "PROCESSING"}
 
+Security
+1) /POST localhost:8787/oauth/token?grant_type=password&client_id=auth&client_secret=secret&username=admin&password=admin
+2) /POST localhost:8787/oauth/token?grant_type=client_credentials&client_id=payment-service&client_secret=secret
+
