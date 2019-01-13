@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -53,11 +52,12 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                     .refreshTokenValiditySeconds(300)
                     .scopes("all")
                     .and()
-                .withClient("payment-service")
+                .withClient("cloud-service")
                     .authorizedGrantTypes("client_credentials")
                     .secret("$2a$11$MaW/OrhJudcq8oUHhaxI6uZyrJBsSKq.FggUM2IDMNjYIPyZOfrGO")
                     .accessTokenValiditySeconds(1200)
                     .scopes("server")
+                    .resourceIds("order", "payment", "report")
                 ;
     }
 
